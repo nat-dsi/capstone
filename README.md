@@ -34,3 +34,34 @@ Apart from graph information, this dataset also has 166 features for each node (
 Out of 166 features, first 94 of them contains *local* information about the node itself like number of inputs/outputs, transaction fee, output volume and aggregated features like average BTC received (or spent) by inputs/outputs and average number of incoming (or outgoing) transactions with inputs/outputs.
 
 The remaining 72 features are for *nonlocal (graph)* information about neighboring nodes (limited to one-hop forward/backward from the center node) and this information is at max, min, std deviation and correlation coeffients of the neighbor transactions w.r.t the local data - ave BTC, number of incoming/outgoing, transacton fee etc.,
+
+
+<H3> Results - Illicit cases </H3>
+
+| Model | Precision  | Recall  | F1-Score  |
+|---|---|---|---|
+|Logistic Regresssion - LF  | 0.49 | 0.64 | 0.56 |
+|Logistic Regression - AF | 0.40 | 0.59 | 0.48 |
+|Random Forest - LF | 0.97  | 0.62  |0.75  |
+|Random Forest - AF| 0.99  | 0.57  |0.72   |
+|Neural Network - AF | 0.81  | 0.63  |0.71  |
+|   |   |   |   |
+
+<H3> Interpratation and conclusion </H3>
+
+Above we've results of all 5 models we executed. Specifically, results for classifying Illicit case and our focus is to minimize the Illicit cases operating in the system. 
+
+So, a model that correctly predicts more Illicit cases with reasonably less incorrectly marked as Illicit cases (i.e better recall score) should be consider good. 
+
+Although, base model of Logistic regression with LF performs better in terms of identifying more illicit cases (with recall score of 0.64), its precision is very bad at 0.49. 
+
+Of the remaining, Random Forest - AF has the highest precision with 0.99 score, its not better at predicting more Illicit cases with the recall score of 0.57. 
+
+So, its between Random Forest - LF and Neural Network - AF as they both have better recall scores (0.62 and 0.63 respectively). Although, recall score of Random Forest - LF is slightly lower than Neural Network - AF, considering the Precision score of 0.97 vs 0.81 of Neural Network - AF, it should clear be considered winner here in terms the model we'll recommend. 
+
+<H3> Next Steps </H3> 
+
+One interesting thing about the results is that, the graph information that are embedded with external features doesn't seem to make much difference and in fact reduced the performance of the models in some cases. This seems puzzling as those graph representations are supposed to improve the model's performance. This is one area we need to investigate further.
+
+Also, we haven't used the edges info present in the dataset in any of our model. Graph Convolutional Network are supposed to solve this problem by taking edges info to generate/transform graph info into features or augement existing features with that graph info. More on this [here](https://towardsdatascience.com/understanding-graph-convolutional-networks-for-node-classification-a2bfdb7aba7b). We need to use GCN on this dataset to see if that improves the model's performance.
+
