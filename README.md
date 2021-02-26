@@ -15,7 +15,7 @@ There are many illegal activities that for which Bitcoin network is being used -
 
 There are various techniques published by research papers to address this problem. This project uses techniques published by one of such [research paper](https://arxiv.org/abs/1908.02591) to detect anomalies and there by classify illicit activites from licit ones.
 
-<H2> Dataset and Data dictionary <H2>
+<H2> Dataset and Data dictionary </H2>
 
 We will be using [Elliptic Dataset](https://medium.com/elliptic/the-elliptic-data-set-opening-up-machine-learning-on-the-blockchain-e0a343d99a14) for this project. Its available on [Kaggle](https://www.kaggle.com/ellipticco/elliptic-data-set). This dataset is released to public by Elliptic so researchers can use real-world data for use cases like AML, Ransomware Heist and other illegal activities.
 
